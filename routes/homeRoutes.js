@@ -41,7 +41,8 @@ router.get('/', (req, res) => {
     // variables to dynamically generate html, in this case the passed information would be used in the HTML head to change the title of the webpage to 'Home Page'.
     // the messages variable will take the created fake data array , messages, and pass it to the index.ejs and enable that to use the data
     // after the HTML is rendered with the passed variables, express sends the complete HTML file to the browser
-    res.render('index', { title: 'Home Page', messages, });
+    // added the stylesheet property to this route, in the head partial the stylesheet will change according to the property set here
+    res.render('index', { title: 'Home Page', messages, stylesheet: '/styles/home.css'});
 });
 
 // this line exports this router so it can be used by the main index router to handle requests
