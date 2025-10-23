@@ -1,7 +1,16 @@
 <!Doctype html>
 <html lang="en">
+    <%# this line uses the head partial and injects that information into this page, you can change the title in the head partial by including the title property on the route %>
     <%- include('partials/head') %>
     <body>
         <h1>This is the homepage</h1>
+        <ul>
+            <%# this line of code takes the messages array and loops through each object in the array and pulls out the data to display it on the page
+            -- using msg.text pull the text from each object in the array and renders it
+            -- each line needs to have an opening and closing ejs tag as they are not multi line %>
+            <% messages.forEach(msg => { %>
+                <li><%=msg.text %>:<%=msg.user%></li>
+            <%})%>
+        </ul>
     </body>
 </html>

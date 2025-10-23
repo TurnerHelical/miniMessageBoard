@@ -5,6 +5,26 @@ const {Router} = require('express');
 // modules that are grouped by the request URL starting point
 const router = Router();
 
+// this array is fake data just to have some sample messages to pass to display on my index view
+// this array is passed into the render call when someone uses the '/' endpoint so that the messages can be accessed and displayed
+const messages = [
+    {
+        id:1,
+        user: 'Alice',
+        text: 'Testing Express'
+    },
+    {
+        id:2,
+        user: 'Bob',
+        text: 'HIIIIIIIIIIIIIII'
+    },
+    {
+        id:3,
+        user: 'Steve',
+        text: 'I did it!!!!!'
+    }
+]
+
 // !!IMPORTANT!! this line defines a route, the .get handles any get requests that are sent to this route, you use router.get as .get is a method on the router object
 // other methods are .post, .put, .delete.
 // the '/' is the path that this route handles, for instance localhost:3000/ would follow this route, for this router you won't see many other routes as it is linked to
@@ -19,8 +39,9 @@ router.get('/', (req, res) => {
     // res.render is for use with view engines, it informs express to look for the view engine config in your app.js so it knows which view engine to use and where to find 
     // templates. This specific call looks for a views/index.ejs file, passes the { title: 'Home Page' } to that view which allows the view engine, EJS, to use those 
     // variables to dynamically generate html, in this case the passed information would be used in the HTML head to change the title of the webpage to 'Home Page'.
-    // after the HTML is rendered with the passed variables, express send the complete HTML file to the browser
-    res.render('index', { title: 'Home Page' });
+    // the messages variable will take the created fake data array , messages, and pass it to the index.ejs and enable that to use the data
+    // after the HTML is rendered with the passed variables, express sends the complete HTML file to the browser
+    res.render('index', { title: 'Home Page', messages, });
 });
 
 // this line exports this router so it can be used by the main index router to handle requests
