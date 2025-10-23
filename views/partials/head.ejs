@@ -1,0 +1,9 @@
+<%# this ejs file is a partial which can be used in your main ejs views by using '<'%'- include('partials/head') '%'>' at the spot in the html where the partial is needed
+ most of the ejs file is plain html the part that is different is where you want to inject the dynamic content, within the '<'%''= '%'>' tags is the property that was passed
+to this template by the router using res.render and including an object with that property #%>
+
+<head>
+  <meta charset="utf-8" />
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>

@@ -42,14 +42,14 @@ app.use(routes);
 // found, the '.render('404'), { title: 'Not Found' }' will send an error page to the browser and change the title of the webpage if you have that set to be dynamic
 // will throw an error if you don't have a 404 view template set up, can also use .send instead of .render if you want to send a string or a HTML snippet
 app.use((req, res) => {
-    res.setStatus(404).render('404', { title: 'Not Found ' });
+    res.status(404).render('404', { title: 'Not Found ' });
 });
 
 // express treats functions that include (err, req, res, next) special as they only run if next(err) is called or an unhandled error occurs
 // this error handler will log the error to console, set HTTP status code to 500, and serve up the 500 view template to the browser while changing the title of the page
 app.use((err, req, res, next) => {
     console.log(err);
-    res.status(500).render('500', { title: 'Server Error' });
+    res.status(500).send('500');
 })
 
 // this line defines the port that the server will be listening on, the process.env.PORT is an enviroment variable that is set in .env, the host of your website
