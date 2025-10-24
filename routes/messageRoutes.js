@@ -19,7 +19,14 @@ router.get('/', (req, res) => {
 
 // this line handles the post requests that hit this endpoint, /message, 
 router.post('/', (req, res) => {
-    
+    if (req.body.messageText.length + req.body.fullName.length > 100) {
+        res.send(`
+        <script>
+        alert('Too many characters!');
+        window.location.href = '/message';  // redirect after OK
+        </script>
+        `);
+    } else {
     // this snippet is doing several things, it's taking the messages array that was exported from the homeRoutes file and adding the user generated content to it
     // the text and user properties in this object use req.body to access the input values that were submitted
     // you access the values with req.body.*id* of the input you want
@@ -29,6 +36,7 @@ router.post('/', (req, res) => {
     // this line redirects the browser back to the homepage after the new message form is submitted
     // you can use res.redirect to send the browser to a different route, this is useful if you have changed an endpoint and want the old route to also lead to the new route
     res.redirect('/');
+    }
 });
 
 //this line exports the router so the main index router can access these routes and pass requests to it

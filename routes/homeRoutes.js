@@ -5,6 +5,8 @@ const {Router} = require('express');
 // modules that are grouped by the request URL starting point
 const router = Router();
 
+// this function creates a date object at the time it is run, then the object is formatted into a local date and time with the .toLocaleString, this example using 'en-us'
+// that formated date is then return out of the function, in this case it runs when a new message is input and creates a timestamp
 const timestamp = () => {
     let dateObj = new Date();
     let formatedDate = dateObj.toLocaleString('en-US');
@@ -48,7 +50,7 @@ router.get('/', (req, res) => {
     // the messages variable will take the created fake data array , messages, and pass it to the index.ejs and enable that to use the data
     // after the HTML is rendered with the passed variables, express sends the complete HTML file to the browser
     // added the stylesheet property to this route, in the head partial the stylesheet will change according to the property set here
-    res.render('index', { title: 'Home Page', messages, stylesheet: '/styles/home.css'});
+    res.render('index', { title: 'Message Control', messages, stylesheet: '/styles/home.css'});
 });
 
 // this line exports this router so it can be used by the main index router to handle requests
