@@ -11,7 +11,7 @@ const app = express();
 const path = require('path');
 
 // this line links app.js to your middleware that controls routing
-const routes = require('./routes')
+const routes = require('./routes');
 
 
 // this sets the view engine for the app, ejs in this case, view engine's allow server side rendering and dynamic information to be inserted on the server before serving
@@ -30,7 +30,7 @@ app.set('views', path.join(__dirname, 'views'));
 // the path.join portion describes the absolute path to the directory that holds the static files
 // if the incoming URL includes any of the paths to static files in the public folder it serves that content, you can have additional directories under public, the url
 // will need to include the directory but public is not necessary to put in the URL
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, 'public')));
 
 // this line calls the routes middleware for all url's that don't match any static files, the general formula is 'app.use(path, function or Router)' if the path 
 // variable is left out it defaults to / which applies to all routes that get passed to this middleware from the preceding one
@@ -42,7 +42,7 @@ app.use(routes);
 // found, the '.render('404'), { title: 'Not Found' }' will send an error page to the browser and change the title of the webpage if you have that set to be dynamic
 // will throw an error if you don't have a 404 view template set up, can also use .send instead of .render if you want to send a string or a HTML snippet
 app.use((req, res) => {
-    res.status(404).render('404', { title: 'Not Found ' });
+    res.status(404).send('404');
 });
 
 // express treats functions that include (err, req, res, next) special as they only run if next(err) is called or an unhandled error occurs

@@ -11,7 +11,7 @@ const router = Router();
 // EJS function use <%= when using values that are user generated, data from forms etc, this prevents ejs from reading the data as javascript and running it.
 // you would use <%- %> when you want EJS to run the code exactly as you typed it, which will cause it to run if it's javascript which makes it vulnerable if using user content
 router.get('/', (req, res) => {
-    res.render('new', { title: 'Message Form' });
+    res.render('new', { title: 'Message Form', stylesheet: '/styles/message.css' });
 });
 
 //this line exports the router so the main index router can access these routes and pass requests to it

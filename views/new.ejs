@@ -2,9 +2,23 @@
 <html lang="en">
     <%- include('partials/head') %>
     <body>
-        <div>
-            <div>
-                <h2>Temp placeholder</h2>
+        <div id="contentCtr">
+            <div id="messageFormCtr">
+                <form>
+                    <h2>New Message</h2>
+
+                    <div>
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" placeholder="Your Name">
+                    </div>
+                    
+                    <div>
+                        <label for="messageText" id="messageLabel">Message:</label>
+                        <textarea id="messageText" name="messageText" rows="4" cols="23" placeholder="Write your message here!"></textarea>
+                    </div>
+
+                    <button type="submit">Submit</button>
+                </form>
             </div>
         </div>
     </body>
