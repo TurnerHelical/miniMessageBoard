@@ -17,9 +17,17 @@ router.get('/', (req, res) => {
     res.render('new', { title: 'Message Form', stylesheet: '/styles/message.css' });
 });
 
-
+// this line handles the post requests that hit this endpoint, /message, 
 router.post('/', (req, res) => {
+    
+    // this snippet is doing several things, it's taking the messages array that was exported from the homeRoutes file and adding the user generated content to it
+    // the text and user properties in this object use req.body to access the input values that were submitted
+    // you access the values with req.body.*id* of the input you want
+    // the added: property is a function defined in the homeRoutes file and imported, it is destructured from the unneeded properties in the object
     messages.push({ text: req.body.messageText, user: req.body.fullName, added: timestamp() });
+
+    // this line redirects the browser back to the homepage after the new message form is submitted
+    // you can use res.redirect to send the browser to a different route, this is useful if you have changed an endpoint and want the old route to also lead to the new route
     res.redirect('/');
 });
 
