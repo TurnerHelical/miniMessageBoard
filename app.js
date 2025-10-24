@@ -32,6 +32,12 @@ app.set('views', path.join(__dirname, 'views'));
 // will need to include the directory but public is not necessary to put in the URL
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+// this line adds a middleware to the express app that parses incoming form data and turns it into a javascript object accessable through req.body
+// the extended true property tell express to use the qs librart which allows the use of more complex objects and arrays to be parsed correctly
+app.use(express.urlencoded({ extended: true }));
+
+
 // this line calls the routes middleware for all url's that don't match any static files, the general formula is 'app.use(path, function or Router)' if the path 
 // variable is left out it defaults to / which applies to all routes that get passed to this middleware from the preceding one
 // that module will then go through the request and check if it matches any of the routes listed in the routes/index.js file, if it does the request is then passed to the 

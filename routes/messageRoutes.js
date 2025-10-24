@@ -1,6 +1,9 @@
 // this line allows this file to access the Router object located in express
 const {Router} = require('express');
 
+//this line imports the messages array from its home file and destructures it from the object it was exported in
+const { messages, timestamp } = require('./homeRoutes.js')
+
 // this line is creates a new router object that only runs for this file
 const router = Router();
 
@@ -12,6 +15,12 @@ const router = Router();
 // you would use <%- %> when you want EJS to run the code exactly as you typed it, which will cause it to run if it's javascript which makes it vulnerable if using user content
 router.get('/', (req, res) => {
     res.render('new', { title: 'Message Form', stylesheet: '/styles/message.css' });
+});
+
+
+router.post('/', (req, res) => {
+    messages.push({ text: req.body.messageText, user: req.body.fullName, added: timestamp() });
+    res.redirect('/');
 });
 
 //this line exports the router so the main index router can access these routes and pass requests to it

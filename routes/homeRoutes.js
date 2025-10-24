@@ -5,23 +5,29 @@ const {Router} = require('express');
 // modules that are grouped by the request URL starting point
 const router = Router();
 
+const timestamp = () => {
+    let dateObj = new Date();
+    let formatedDate = dateObj.toLocaleString('en-US');
+    return formatedDate;
+}
+
 // this array is fake data just to have some sample messages to pass to display on my index view
 // this array is passed into the render call when someone uses the '/' endpoint so that the messages can be accessed and displayed
 const messages = [
     {
-        id:1,
         user: 'Alice',
-        text: 'Testing Express'
+        text: 'Testing Express',
+        added: timestamp()
     },
     {
-        id:2,
         user: 'Bob',
-        text: 'HIIIIIIIIIIIIIII'
+        text: 'HIIIIIIIIIIIIIII',
+        added: timestamp()
     },
     {
-        id:3,
         user: 'Steve',
-        text: 'I did it!!!!!'
+        text: 'I did it!!!!!',
+        added: timestamp()
     }
 ]
 
@@ -46,7 +52,8 @@ router.get('/', (req, res) => {
 });
 
 // this line exports this router so it can be used by the main index router to handle requests
-module.exports = router;
+// this line also exports the messages array so it can be accessed and altered from other files
+module.exports = {router, messages, timestamp};
 
 // this router will only handle request that match '/' with the current setup, if I wanted to I could define more routes in this file to handle say '/team' requests and 
 // if I also have a seperate router for the /team url it won't be reached as express will pass the request to the first middleware that matches the url and then stop 

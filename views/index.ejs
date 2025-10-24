@@ -9,7 +9,7 @@
             -- using msg.text pull the text from each object in the array and renders it
             -- each line needs to have an opening and closing ejs tag as they are not multi line %>
             <% messages.forEach(msg => { %>
-                <li><%=msg.text %>:<%=msg.user%></li>
+                <li><%=msg.user %> : <%=msg.text%> | <%=msg.added%> </li>
             <%})%>
         </ul>
     </body>

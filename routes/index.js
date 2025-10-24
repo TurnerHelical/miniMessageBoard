@@ -4,7 +4,7 @@ const { Router } = require('express');
 // these lines import the other route modules so that this page can send the request to the right file
 // the require should be the path to the route module
 // the individual route modules need to be exported to be accessed here
-const home = require('./homeRoutes');
+const { router: home } = require('./homeRoutes');
 const message = require('./messageRoutes')
 
 // this creates the main router, it ties together all the other route modules 
