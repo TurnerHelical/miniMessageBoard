@@ -19,14 +19,21 @@ router.get('/', (req, res) => {
 
 // this line handles the post requests that hit this endpoint, /message, 
 router.post('/', (req, res) => {
-    if (req.body.messageText.length + req.body.fullName.length > 50) {
+
+    //this line destructures the req.body object and pulls out the values I intend to use
+    const {messageText, fullName} = req.body;
+
+    // this snippet checks that the length of the message and name do not exceed 50 characters, if it does then an alert is sent back to the client explaining the error and redirecting when ok is selected
+    if (messageText.length + fullName.length > 50) {
         res.send(`
         <script>
         alert('Too many characters!');
         window.location.href = '/message'; 
         </script>
         `);
-    } else if (!req.body.messageText|| !req.body.fullName) {
+
+    // this snippet checks that the message and name fields are not empty, if they are an alert is sent to the client with details of the error and then redirecting
+    } else if (!messageText|| !fullName) {
         res.send(`
             <script>
             alert('Please make sure all fields are filled in.');
@@ -39,7 +46,7 @@ router.post('/', (req, res) => {
     // the text and user properties in this object use req.body to access the input values that were submitted
     // you access the values with req.body.*id* of the input you want
     // the added: property is a function defined in the homeRoutes file and imported, it is destructured from the unneeded properties in the object
-    messages.push({ text: req.body.messageText, user: req.body.fullName, added: timestamp() });
+    messages.push({ text: messageText, user: fullName, added: timestamp() });
 
     // this line redirects the browser back to the homepage after the new message form is submitted
     // you can use res.redirect to send the browser to a different route, this is useful if you have changed an endpoint and want the old route to also lead to the new route
