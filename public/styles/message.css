@@ -38,6 +38,10 @@ form div {
     font-size: 20px;
 }
 
+label {
+    width: 80px;
+}
+
 #messageLabel {
     height: fit-content;
 }
